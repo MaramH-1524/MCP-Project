@@ -1,0 +1,6 @@
+{
+  "name": "airport-info",
+  "transport": "stdio",
+  "command": "uv",
+  "args": ["run", "main.py"]
+}

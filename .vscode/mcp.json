@@ -1,0 +1,35 @@
+{
+  "servers": {
+    "sayHello": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "run",
+        "main.py"
+      ]
+    },
+    "calculator": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "run",
+        "Calculator_tool/calculator.py"
+      ]
+    },
+    "airport":{
+         "type": "stdio",
+         "command": "uv",
+         "args": ["run",
+          "flights_server.py"]
+},
+"book":{
+    "type": "stdio",
+    "command": "uv",
+    "args": [
+        "run",
+        "openlibrary_server.py"
+    ]
+    
+},
+  }
+}
