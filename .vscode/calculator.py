@@ -1,11 +1,11 @@
-from mcp.server import Server
+from fastmcp import FastMCP
 from mcp.types import Tool, ToolResult
 
-server = server("calculator")
+mcp = FastMCP("calculator")
 
 
 # -------------------- ADD --------------------
-@server.register_tool(
+@mcp.register_tool(
     Tool(
         name="add",
         description="Additionne deux nombres",
@@ -24,7 +24,7 @@ def add(a: float, b: float) -> ToolResult:
 
 
 # -------------------- SUBTRACT --------------------
-@server.register_tool(
+@mcp.register_tool(
     Tool(
         name="subtract",
         description="Soustrait b de a",
@@ -43,7 +43,7 @@ def subtract(a: float, b: float) -> ToolResult:
 
 
 # -------------------- MULTIPLY --------------------
-@server.register_tool(
+@mcp.register_tool(
     Tool(
         name="multiply",
         description="Multiplie deux nombres",
@@ -62,7 +62,7 @@ def multiply(a: float, b: float) -> ToolResult:
 
 
 # -------------------- DIVIDE --------------------
-@server.register_tool(
+@mcp.register_tool(
     Tool(
         name="divide",
         description="Divise a par b",
@@ -84,4 +84,4 @@ def divide(a: float, b: float) -> ToolResult:
 
 # -------------------- RUN SERVER --------------------
 if __name__ == "__main__":
-    server.run_stdio()
+    mcp.run_stdio(transport="http")
