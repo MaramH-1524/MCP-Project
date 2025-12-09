@@ -1,5 +1,5 @@
 from fastmcp import FastMCP
-from mcp.types import Tool, ToolResult
+from mcp.types import Tool
 
 mcp = FastMCP("calculator")
 
@@ -18,8 +18,8 @@ mcp = FastMCP("calculator")
         }
     )
 )
-def add(a: float, b: float) -> ToolResult:
-    return ToolResult(output=a + b)
+def add(a: float, b: float):
+    return {"output": a + b}
 
 # -------------------- SUBTRACT --------------------
 @mcp.register_tool(
@@ -36,8 +36,8 @@ def add(a: float, b: float) -> ToolResult:
         }
     )
 )
-def subtract(a: float, b: float) -> ToolResult:
-    return ToolResult(output=a - b)
+def subtract(a: float, b: float):
+    return {"output": a - b}
 
 # -------------------- MULTIPLY --------------------
 @mcp.register_tool(
@@ -54,8 +54,8 @@ def subtract(a: float, b: float) -> ToolResult:
         }
     )
 )
-def multiply(a: float, b: float) -> ToolResult:
-    return ToolResult(output=a * b)
+def multiply(a: float, b: float):
+    return {"output": a * b}
 
 # -------------------- DIVIDE --------------------
 @mcp.register_tool(
@@ -72,11 +72,11 @@ def multiply(a: float, b: float) -> ToolResult:
         }
     )
 )
-def divide(a: float, b: float) -> ToolResult:
+def divide(a: float, b: float):
     if b == 0:
-        return ToolResult(error="Division par zéro impossible")
-    return ToolResult(output=a / b)
+        return {"error": "Division par zéro impossible"}
+    return {"output": a / b}
 
 # -------------------- RUN SERVER --------------------
 if __name__ == "__main__":
-    mcp.run(transport="http")  # ✔ Correct pour FastMCP
+    mcp.run(transport="http")
