@@ -3,7 +3,6 @@ from mcp.types import Tool, ToolResult
 
 mcp = FastMCP("calculator")
 
-
 # -------------------- ADD --------------------
 @mcp.register_tool(
     Tool(
@@ -21,7 +20,6 @@ mcp = FastMCP("calculator")
 )
 def add(a: float, b: float) -> ToolResult:
     return ToolResult(output=a + b)
-
 
 # -------------------- SUBTRACT --------------------
 @mcp.register_tool(
@@ -41,7 +39,6 @@ def add(a: float, b: float) -> ToolResult:
 def subtract(a: float, b: float) -> ToolResult:
     return ToolResult(output=a - b)
 
-
 # -------------------- MULTIPLY --------------------
 @mcp.register_tool(
     Tool(
@@ -59,7 +56,6 @@ def subtract(a: float, b: float) -> ToolResult:
 )
 def multiply(a: float, b: float) -> ToolResult:
     return ToolResult(output=a * b)
-
 
 # -------------------- DIVIDE --------------------
 @mcp.register_tool(
@@ -81,7 +77,6 @@ def divide(a: float, b: float) -> ToolResult:
         return ToolResult(error="Division par zéro impossible")
     return ToolResult(output=a / b)
 
-
 # -------------------- RUN SERVER --------------------
 if __name__ == "__main__":
-    mcp.run_stdio(transport="http")
+    mcp.run(transport="http")  # ✔ Correct pour FastMCP
