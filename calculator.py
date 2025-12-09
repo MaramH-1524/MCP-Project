@@ -1,31 +1,87 @@
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
+from mcp.types import Tool, ToolResult
 
-mcp = FastMCP(
-    name="calculator"
+mcp = FastMCP("calculator")
+
+
+# -------------------- ADD --------------------
+@mcp.register_tool(
+    Tool(
+        name="add",
+        description="Additionne deux nombres",
+        input_schema={
+            "type": "object",
+            "properties": {
+                "a": {"type": "number"},
+                "b": {"type": "number"}
+            },
+            "required": ["a", "b"]
+        }
+    )
 )
-#on doit faire des documentations / on l'a deja fait ici 
-@mcp.tool()
-def add(a: float, b: float):
-    """Additionne deux nombres."""
-    return a + b
+def add(a: float, b: float) -> ToolResult:
+    return ToolResult(output=a + b)
 
-@mcp.tool()
-def subtract(a: float, b: float):
-    """Soustrait b de a."""
-    return a - b
 
-@mcp.tool()
-def multiply(a: float, b: float):
-    """Multiplie deux nombres."""
-    return a * b
+# -------------------- SUBTRACT --------------------
+@mcp.register_tool(
+    Tool(
+        name="subtract",
+        description="Soustrait b de a",
+        input_schema={
+            "type": "object",
+            "properties": {
+                "a": {"type": "number"},
+                "b": {"type": "number"}
+            },
+            "required": ["a", "b"]
+        }
+    )
+)
+def subtract(a: float, b: float) -> ToolResult:
+    return ToolResult(output=a - b)
 
-@mcp.tool()
-def divide(a: float, b: float):
-    """Divise a par b."""
+
+# -------------------- MULTIPLY --------------------
+@mcp.register_tool(
+    Tool(
+        name="multiply",
+        description="Multiplie deux nombres",
+        input_schema={
+            "type": "object",
+            "properties": {
+                "a": {"type": "number"},
+                "b": {"type": "number"}
+            },
+            "required": ["a", "b"]
+        }
+    )
+)
+def multiply(a: float, b: float) -> ToolResult:
+    return ToolResult(output=a * b)
+
+
+# -------------------- DIVIDE --------------------
+@mcp.register_tool(
+    Tool(
+        name="divide",
+        description="Divise a par b",
+        input_schema={
+            "type": "object",
+            "properties": {
+                "a": {"type": "number"},
+                "b": {"type": "number"}
+            },
+            "required": ["a", "b"]
+        }
+    )
+)
+def divide(a: float, b: float) -> ToolResult:
     if b == 0:
-        raise ValueError("Division par zéro impossible.")
-    return a / b
+        return ToolResult(error="Division par zéro impossible")
+    return ToolResult(output=a / b)
 
 
+# -------------------- RUN SERVER --------------------
 if __name__ == "__main__":
-    mcp.run(transport="stdio")
+    mcp.run_stdio(transport="http")
